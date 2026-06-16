@@ -26,17 +26,17 @@ minimal `node:20-alpine` runtime image (~150 MB).
 docker run -d \
   --name lucid-ag \
   --restart unless-stopped \
-  -p 3000:3000 \
+  -p 9000:9000 \
   lucid-ag:latest
 ```
 
-The site is now available at `http://<server-ip>:3000`.
+The site is now available at `http://<server-ip>:9000`.
 
 ### Environment variables
 
 | Variable | Default       | Purpose                      |
 | -------- | ------------- | ---------------------------- |
-| `PORT`   | `3000`        | Port the server listens on   |
+| `PORT`   | `9000`        | Port the server listens on   |
 | `HOST`   | `0.0.0.0`     | Bind address                 |
 | `NODE_ENV` | `production`| Runtime mode                 |
 
@@ -51,7 +51,7 @@ services:
     image: lucid-ag:latest
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "9000:9000"
     environment:
       NODE_ENV: production
 ```
@@ -69,7 +69,7 @@ server {
   ssl_certificate_key /etc/letsencrypt/live/lucidag.com/privkey.pem;
 
   location / {
-    proxy_pass         http://127.0.0.1:3000;
+    proxy_pass         http://127.0.0.1:9000;
     proxy_http_version 1.1;
     proxy_set_header   Host              $host;
     proxy_set_header   X-Real-IP         $remote_addr;
@@ -91,7 +91,7 @@ Caddy is even simpler — a one-liner Caddyfile:
 
 ```caddy
 lucidag.com {
-  reverse_proxy 127.0.0.1:3000
+  reverse_proxy 127.0.0.1:9000
 }
 ```
 
@@ -101,7 +101,7 @@ lucidag.com {
 git pull
 docker build -t lucid-ag:latest .
 docker stop lucid-ag && docker rm lucid-ag
-docker run -d --name lucid-ag --restart unless-stopped -p 3000:3000 lucid-ag:latest
+docker run -d --name lucid-ag --restart unless-stopped -p 9000:9000 lucid-ag:latest
 ```
 
 Or with compose: `docker compose up -d --build`.

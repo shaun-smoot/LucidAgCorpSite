@@ -171,7 +171,7 @@ function Index() {
         >
           <div className="mx-auto max-w-[1600px]">
             <div className="flex items-start justify-between mb-12 md:mb-24">
-              <div className="eyebrow rise-in">Est. — Operating now in Zürich · London · Singapore</div>
+              <div className="eyebrow rise-in">Est. — Operating now in Las Vegas · New York · Miami</div>
               <div className="eyebrow hidden md:block rise-in" style={{ animationDelay: "120ms" }}>
                 Index — N°&nbsp;001 / Systems
               </div>
@@ -348,8 +348,7 @@ function Index() {
               </h2>
               <p className="mt-8 text-base md:text-lg text-cream/70 max-w-xl leading-relaxed">
                 New engagements begin with a working conversation — typically with the CEO, CIO or
-                transformation lead — to map where intelligent systems will move your enterprise first.
-                We're glad to sign an NDA before we begin.
+                transformation lead — to map where intelligent systems will move your enterprise forward.
               </p>
             </div>
             <div className="md:col-span-4 md:col-start-9 self-end space-y-8">
@@ -361,7 +360,7 @@ function Index() {
               </div>
               <div>
                 <div className="eyebrow text-cream/50 mb-2">Offices</div>
-                <p className="text-cream/80">Zürich &middot; London &middot; Singapore</p>
+                <p className="text-cream/80">Las Vegas &middot; New York &middot; Miami</p>
               </div>
               <a
                 href="mailto:office@lucidag.com"
