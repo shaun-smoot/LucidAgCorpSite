@@ -77,18 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lucid AG — AI-driven Systems Strategists" },
+      { title: "Lucid AG — Intelligent-Systems Strategists" },
       {
         name: "description",
         content:
-          "Lucid AG designs and integrates AI-driven operating systems for family offices, principals and private holdings. Discreet, sovereign, technically uncompromising.",
+          "Lucid AG designs and integrates intelligent operating systems for high-velocity enterprises. We turn AI strategy into production-grade systems that compound advantage.",
       },
       { name: "author", content: "Lucid AG" },
-      { property: "og:title", content: "Lucid AG — AI-driven Systems Strategists" },
+      { property: "og:title", content: "Lucid AG — Intelligent-Systems Strategists" },
       {
         property: "og:description",
         content:
-          "Private AI infrastructure and systems strategy for high-net-worth ecosystems.",
+          "Enterprise AI strategy and integration for high-velocity operating environments.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

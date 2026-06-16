@@ -9,11 +9,11 @@ import tileBlueprint from "@/assets/tile-blueprint.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Lucid AG — AI-driven Systems Strategists for high-net-worth ecosystems" },
+      { title: "Lucid AG — Intelligent-Systems Strategists for high-velocity operating environments" },
       {
         name: "description",
         content:
-          "Lucid AG designs and integrates sovereign AI operating systems for family offices, principals and private holdings. Discreet, technically uncompromising.",
+          "Lucid AG designs and integrates intelligent operating systems for high-velocity enterprises. Production-grade AI strategy, integration and governance.",
       },
     ],
   }),
@@ -30,88 +30,88 @@ type Capability = {
 const capabilities: Capability[] = [
   {
     index: "01 / Strategy",
-    title: "Systems Strategy",
+    title: "AI Strategy",
     caption:
-      "Architectural roadmaps for the operating system of a family enterprise. We translate principal intent into intelligent infrastructure.",
+      "Architectural roadmaps for the operating system of the enterprise. We translate executive intent into intelligent, production-ready infrastructure.",
     image: tileBlueprint,
   },
   {
     index: "02 / Integration",
-    title: "Private AI Integration",
+    title: "Enterprise AI Integration",
     caption:
-      "Sovereign language models and autonomous agents, deployed inside the boundary of the family — never outside it.",
+      "Language models and autonomous agents, integrated into your core systems and secured inside the enterprise boundary — governed, observable and owned.",
     image: tileMarble,
   },
   {
     index: "03 / Operations",
     title: "Operations Intelligence",
     caption:
-      "Continuous synthesis across portfolio companies, investments, staff and assets. One quiet signal in place of many.",
+      "Continuous synthesis across functions, portfolios, people and assets. One clear signal in place of fragmented reporting.",
     image: tileDesk,
   },
   {
-    index: "04 / Continuity",
-    title: "Governance & Continuity",
+    index: "04 / Governance",
+    title: "Governance & Assurance",
     caption:
-      "Provenance, controls and succession-grade documentation for systems built to outlast the engagement.",
+      "Provenance, controls and responsible-AI guardrails — audit-grade documentation for systems built to scale and to last.",
     image: tileCorridor,
   },
   {
-    index: "05 / Staff",
-    title: "Augmented Principal Staff",
+    index: "05 / Workforce",
+    title: "Workforce Enablement",
     caption:
-      "Tooling, training and protocols so chiefs of staff, family-office teams and personal staff operate with AI as second nature.",
+      "Tooling, training and protocols so leaders and their teams operate with AI as second nature — adoption that sticks.",
     image: tileLibrary,
   },
 ];
 
 const ecosystems = [
   {
-    label: "Single-family offices",
+    label: "Enterprises & operating companies",
     body:
-      "We work alongside the CEO, CIO and chief of staff to consolidate operating intelligence across investments, holdings and household.",
+      "We work alongside the CEO, CIO and COO to consolidate operating intelligence across business units, functions and the P&L.",
   },
   {
-    label: "Principals & founders",
+    label: "Founders & executive teams",
     body:
-      "Private engagements with the principal directly — personal intelligence systems, decision support, and discreet automation.",
+      "Direct engagements with leadership — decision intelligence, executive copilots, and high-leverage automation where it matters most.",
   },
   {
-    label: "Private holdings",
+    label: "Private equity & portfolios",
     body:
-      "Operator-grade AI inside portfolio companies, with reporting lines back to the family rather than to a public board.",
+      "Operator-grade AI deployed across portfolio companies, with value-creation reporting back to the sponsor and the board.",
   },
   {
-    label: "Trusted advisors",
+    label: "Partners & advisors",
     body:
-      "Embedded work with the family's lawyers, bankers and accountants — we sit on their side of the table, not the vendor's.",
+      "Embedded work with your existing technology, legal and delivery partners — we sit on your side of the table, not the vendor's.",
   },
 ];
 
 const philosophy = [
   {
     n: "I.",
-    title: "Discretion is the product.",
+    title: "Outcomes are the product.",
     body:
-      "Our work is most successful when it is invisible. We do not publish case studies, logos or named references.",
+      "Our work is judged by what it produces — productivity, growth and decisions made measurably better. Not slideware, not pilots that never ship.",
   },
   {
     n: "II.",
-    title: "Sovereign by default.",
+    title: "Owned by default.",
     body:
-      "Models, weights, prompts and data remain inside the family's perimeter. No vendor lock-in. No data exhaust.",
+      "Models, weights, data and decisions stay inside your perimeter. No lock-in, no data exhaust — the system is yours to run and to extend.",
   },
   {
     n: "III.",
     title: "Strategists, not implementers.",
     body:
-      "We design the system, build the spine, and hand operating authority back to the family's own people.",
+      "We design the system, build the spine, and hand operating authority back to your own teams. Capability transfer is the goal, not dependency.",
   },
   {
     n: "IV.",
-    title: "One engagement at a time.",
+    title: "Focused by design.",
     body:
-      "Capacity is deliberately limited. We work with a small number of ecosystems where we can move with conviction.",
+      "Capacity is deliberately limited. We commit to a small number of enterprises where we can move with conviction and stand behind the outcome.",
   },
 ];
 
@@ -186,13 +186,13 @@ function Index() {
 
             <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-12 gap-10">
               <p className="md:col-span-7 md:col-start-2 font-display text-3xl md:text-5xl leading-[1.05] -tracking-[0.01em] text-ink rise-in" style={{ animationDelay: "320ms" }}>
-                <span className="italic text-ink/55">We are</span> AI-driven systems strategists
-                <span className="italic text-ink/55"> for</span> high-net-worth ecosystems.
+                <span className="italic text-ink/55">We are</span> intelligent-systems strategists
+                <span className="italic text-ink/55"> for</span> high-velocity operating environments.
               </p>
               <div className="md:col-span-3 md:col-start-10 self-end space-y-4 rise-in" style={{ animationDelay: "440ms" }}>
                 <p className="text-sm leading-relaxed text-ink/70">
-                  Lucid AG builds the private operating intelligence behind family offices, principals and the
-                  businesses they own — quietly, durably, and on their own terms.
+                  Lucid AG builds the intelligent operating systems behind ambitious enterprises — turning AI
+                  strategy into production-grade infrastructure that compounds advantage.
                 </p>
                 <a href="#capabilities" className="eyebrow link-rule inline-block">↓ &nbsp; Scroll to capabilities</a>
               </div>
@@ -205,13 +205,13 @@ function Index() {
           <div className="flex whitespace-nowrap marquee-track gap-16">
             {Array.from({ length: 2 }).map((_, i) => (
               <div key={i} className="flex items-center gap-16 shrink-0 font-display text-3xl md:text-4xl italic text-ink/80">
-                <span>Sovereign intelligence.</span>
+                <span>Intelligent systems.</span>
                 <span className="text-steel">✦</span>
-                <span>Family-office grade.</span>
+                <span>Enterprise grade.</span>
                 <span className="text-steel">✦</span>
-                <span>Built to outlast us.</span>
+                <span>Built to scale.</span>
                 <span className="text-steel">✦</span>
-                <span>Quiet by design.</span>
+                <span>Engineered for velocity.</span>
                 <span className="text-steel">✦</span>
               </div>
             ))}
@@ -226,15 +226,15 @@ function Index() {
             </div>
             <div className="md:col-span-8 md:col-start-5">
               <p className="font-display text-2xl md:text-4xl leading-[1.2]">
-                For a generation, family offices ran on relationships, judgment and a handful of trusted
-                advisors. The next generation will also run on{" "}
-                <span className="italic text-steel">private operating intelligence</span> —
-                models, agents and systems that compound an ecosystem's advantage without ever leaving it.
+                For a generation, enterprises ran on process, headcount and systems of record. The next
+                will also run on{" "}
+                <span className="italic text-steel">intelligent operating systems</span> —
+                models, agents and orchestration that compound advantage across every function and decision.
               </p>
               <p className="mt-8 text-base md:text-lg text-ink/70 max-w-2xl leading-relaxed">
-                Lucid AG exists to design and install that layer. We do not sell software. We do not resell other
-                people's models. We embed inside the principal's world and build the intelligence the family will
-                actually operate.
+                Lucid AG exists to design and install that layer. We are technology-agnostic strategists, not a
+                software vendor — we embed alongside your teams and build the intelligence your enterprise will
+                actually operate and own.
               </p>
             </div>
           </div>
@@ -296,8 +296,8 @@ function Index() {
                 Who we work <span className="italic text-steel">with.</span>
               </h2>
               <p className="mt-6 text-sm text-ink/65 max-w-sm leading-relaxed">
-                We work with a small number of private ecosystems — by referral, under strict confidence,
-                and with the principal in the room.
+                We work with a focused set of enterprises where intelligent systems will define the next decade
+                of advantage — with leadership in the room and accountability for outcomes.
               </p>
             </div>
             <ul className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-px bg-rule self-start">
@@ -316,7 +316,7 @@ function Index() {
           <div className="mx-auto max-w-[1600px]">
             <div className="eyebrow mb-4">§ 04 — Philosophy</div>
             <h2 className="font-display text-5xl md:text-8xl leading-[0.92] -tracking-[0.03em] max-w-[18ch]">
-              A practice of <span className="italic text-steel">restraint.</span>
+              A practice of <span className="italic text-steel">conviction.</span>
             </h2>
 
             <ol className="mt-16 md:mt-24 space-y-px bg-rule">
@@ -344,12 +344,12 @@ function Index() {
             <div className="md:col-span-7">
               <div className="eyebrow text-cream/60 mb-6">§ 05 — Inquiry</div>
               <h2 className="font-display text-5xl md:text-8xl leading-[0.9] -tracking-[0.03em]">
-                Speak with us <span className="italic text-steel/90">privately.</span>
+                Start the <span className="italic text-steel/90">conversation.</span>
               </h2>
               <p className="mt-8 text-base md:text-lg text-cream/70 max-w-xl leading-relaxed">
-                New engagements begin with a confidential conversation — typically with the principal,
-                the CEO of the family office, or the chief of staff. We sign an NDA before the first
-                meeting if that is preferred.
+                New engagements begin with a working conversation — typically with the CEO, CIO or
+                transformation lead — to map where intelligent systems will move your enterprise first.
+                We're glad to sign an NDA before we begin.
               </p>
             </div>
             <div className="md:col-span-4 md:col-start-9 self-end space-y-8">
@@ -367,7 +367,7 @@ function Index() {
                 href="mailto:office@lucidag.com"
                 className="inline-flex items-center gap-3 border border-cream/30 px-6 py-4 text-sm font-medium hover:bg-cream hover:text-ink transition-colors"
               >
-                Request a private consultation
+                Request a consultation
                 <span aria-hidden>→</span>
               </a>
             </div>
@@ -377,7 +377,7 @@ function Index() {
 
       <footer className="px-6 md:px-10 py-10 border-t border-rule">
         <div className="mx-auto max-w-[1600px] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="eyebrow">© {new Date().getFullYear()} Lucid AG — All matters confidential</div>
+          <div className="eyebrow">© {new Date().getFullYear()} Lucid AG — Intelligent systems, engineered to last</div>
           <div className="flex gap-8 eyebrow">
             <a href="#" className="hover:text-ink">Privacy</a>
             <a href="#" className="hover:text-ink">Notice</a>
