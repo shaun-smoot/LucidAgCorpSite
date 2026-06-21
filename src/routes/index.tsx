@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { ConsultationDialog } from "@/components/consultation-dialog";
 import tileLibrary from "@/assets/tile-library.jpg";
 import tileMarble from "@/assets/tile-marble.jpg";
 import tileDesk from "@/assets/tile-desk.jpg";
@@ -362,13 +363,15 @@ function Index() {
                 <div className="eyebrow text-cream/50 mb-2">Offices</div>
                 <p className="text-cream/80">Las Vegas &middot; New York &middot; Miami</p>
               </div>
-              <a
-                href="mailto:office@lucidag.com"
-                className="inline-flex items-center gap-3 border border-cream/30 px-6 py-4 text-sm font-medium hover:bg-cream hover:text-ink transition-colors"
-              >
-                Request a consultation
-                <span aria-hidden>→</span>
-              </a>
+              <ConsultationDialog>
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-3 border border-cream/30 px-6 py-4 text-sm font-medium hover:bg-cream hover:text-ink transition-colors"
+                >
+                  Request a consultation
+                  <span aria-hidden>→</span>
+                </button>
+              </ConsultationDialog>
             </div>
           </div>
         </section>
