@@ -27,6 +27,7 @@ docker run -d \
   --name lucid-ag \
   --restart unless-stopped \
   -p 9000:9000 \
+  -e SLACK_WEBHOOK_URL="https://hooks.slack.com/services/XXX/YYY/ZZZ" \
   lucid-ag:latest
 ```
 
@@ -34,13 +35,21 @@ The site is now available at `http://<server-ip>:9000`.
 
 ### Environment variables
 
-| Variable | Default       | Purpose                      |
-| -------- | ------------- | ---------------------------- |
-| `PORT`   | `9000`        | Port the server listens on   |
-| `HOST`   | `0.0.0.0`     | Bind address                 |
-| `NODE_ENV` | `production`| Runtime mode                 |
+| Variable | Default       | Purpose                                          |
+| -------- | ------------- | ------------------------------------------------ |
+| `PORT`   | `9000`        | Port the server listens on                       |
+| `HOST`   | `0.0.0.0`     | Bind address                                     |
+| `NODE_ENV` | `production`| Runtime mode                                     |
+| `SLACK_WEBHOOK_URL` | _(unset)_ | Slack incoming webhook for consultation requests |
 
 Pass with `-e`, e.g. `-e PORT=8080 -p 8080:8080`.
+
+> **Consultation form delivery.** Submissions from the “Request a consultation”
+> form are posted to Slack via an [incoming webhook](https://api.slack.com/messaging/webhooks).
+> Create the webhook for your channel (e.g. _#request-a-consultation_) and pass
+> its URL as `SLACK_WEBHOOK_URL`. If the variable is unset, submissions still
+> succeed and are logged to the container output but are **not** sent to Slack.
+> Treat the webhook URL as a secret — never commit it to the repo.
 
 ## 3. docker-compose (optional)
 
@@ -54,6 +63,7 @@ services:
       - "9000:9000"
     environment:
       NODE_ENV: production
+      SLACK_WEBHOOK_URL: "https://hooks.slack.com/services/XXX/YYY/ZZZ"
 ```
 
 Then: `docker compose up -d --build`
@@ -101,7 +111,7 @@ lucidag.com {
 git pull
 docker build -t lucid-ag:latest .
 docker stop lucid-ag && docker rm lucid-ag
-docker run -d --name lucid-ag --restart unless-stopped -p 9000:9000 lucid-ag:latest
+docker run -d --name lucid-ag --restart unless-stopped -p 9000:9000 -e SLACK_WEBHOOK_URL="https://hooks.slack.com/services/XXX/YYY/ZZZ" lucid-ag:latest
 ```
 
 Or with compose: `docker compose up -d --build`.
@@ -128,3 +138,6 @@ Use `pm2`, `systemd`, or similar to keep it alive.
 - No database or secrets are required for the current site. If you add
   Lovable Cloud features later, pass the relevant `*_URL` / `*_KEY` values
   as container env vars.
+- The consultation form posts to Slack through `SLACK_WEBHOOK_URL` (an incoming
+  webhook). It is optional for the site to boot, but required for form
+  submissions to reach your Slack channel. Keep the URL out of version control.
