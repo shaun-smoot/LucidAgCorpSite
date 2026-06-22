@@ -122,6 +122,36 @@ function Index() {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
+  // Capabilities horizontal strip — click-to-scroll navigation
+  const stripRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateStripScrollState = () => {
+    const el = stripRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 8);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 8);
+  };
+
+  const scrollStrip = (direction: 1 | -1) => {
+    const el = stripRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const el = stripRef.current;
+    if (!el) return;
+    updateStripScrollState();
+    el.addEventListener("scroll", updateStripScrollState, { passive: true });
+    window.addEventListener("resize", updateStripScrollState);
+    return () => {
+      el.removeEventListener("scroll", updateStripScrollState);
+      window.removeEventListener("resize", updateStripScrollState);
+    };
+  }, []);
+
   useEffect(() => {
     const onMove = (e: MouseEvent) => setCoords({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", onMove);
@@ -253,38 +283,66 @@ function Index() {
             <div className="eyebrow hidden md:block">↔ &nbsp; Scroll horizontally</div>
           </div>
 
-          <div className="strip-scroll overflow-x-auto pb-10">
-            <ul className="flex gap-6 px-6 md:px-10 w-max">
-              {capabilities.map((c, i) => (
-                <li
-                  key={c.title}
-                  className="group relative w-[78vw] sm:w-[44vw] md:w-[32vw] lg:w-[26vw] shrink-0 scroll-ml-10 snap-start"
-                  onMouseEnter={() => setHoverIdx(i)}
-                  onMouseLeave={() => setHoverIdx(null)}
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-cream-deep">
-                    <img
-                      src={c.image}
-                      alt=""
-                      loading="lazy"
-                      width={1024}
-                      height={1280}
-                      className="size-full object-cover transition-all duration-[1200ms] ease-out grayscale-[40%] group-hover:grayscale-0 group-hover:scale-[1.04]"
-                    />
-                    <div className="absolute inset-0 bg-ink/20 group-hover:bg-ink/0 transition-colors duration-700" />
-                    <div className="absolute top-4 left-4 eyebrow text-cream/90">{c.index}</div>
-                  </div>
-                  <div className="pt-5 flex items-start justify-between gap-6">
-                    <h3 className="font-display text-2xl md:text-3xl leading-tight -tracking-[0.01em]">
-                      {c.title}
-                    </h3>
-                    <span className="eyebrow shrink-0 mt-2">↗</span>
-                  </div>
-                  <p className="mt-3 text-sm text-ink/65 leading-relaxed max-w-[36ch]">{c.caption}</p>
-                </li>
-              ))}
-              <li className="w-6 shrink-0" aria-hidden />
-            </ul>
+          <div className="relative group/strip">
+            {/* Hover navigation arrows */}
+            <button
+              type="button"
+              aria-label="Scroll capabilities left"
+              onClick={() => scrollStrip(-1)}
+              className={`absolute left-4 md:left-8 top-[34%] z-10 -translate-y-1/2 hidden md:flex size-12 items-center justify-center border border-ink/15 bg-cream/85 backdrop-blur-sm text-ink shadow-sm transition-all duration-300 hover:bg-ink hover:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-steel ${
+                canScrollLeft
+                  ? "opacity-0 group-hover/strip:opacity-100"
+                  : "opacity-0 pointer-events-none"
+              }`}
+            >
+              <span aria-hidden className="text-lg leading-none">←</span>
+            </button>
+            <button
+              type="button"
+              aria-label="Scroll capabilities right"
+              onClick={() => scrollStrip(1)}
+              className={`absolute right-4 md:right-8 top-[34%] z-10 -translate-y-1/2 hidden md:flex size-12 items-center justify-center border border-ink/15 bg-cream/85 backdrop-blur-sm text-ink shadow-sm transition-all duration-300 hover:bg-ink hover:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-steel ${
+                canScrollRight
+                  ? "opacity-0 group-hover/strip:opacity-100"
+                  : "opacity-0 pointer-events-none"
+              }`}
+            >
+              <span aria-hidden className="text-lg leading-none">→</span>
+            </button>
+
+            <div ref={stripRef} className="strip-scroll overflow-x-auto pb-10">
+              <ul className="flex gap-6 px-6 md:px-10 w-max">
+                {capabilities.map((c, i) => (
+                  <li
+                    key={c.title}
+                    className="group relative w-[78vw] sm:w-[44vw] md:w-[32vw] lg:w-[26vw] shrink-0 scroll-ml-10 snap-start"
+                    onMouseEnter={() => setHoverIdx(i)}
+                    onMouseLeave={() => setHoverIdx(null)}
+                  >
+                    <div className="relative aspect-[4/5] overflow-hidden bg-cream-deep">
+                      <img
+                        src={c.image}
+                        alt=""
+                        loading="lazy"
+                        width={1024}
+                        height={1280}
+                        className="size-full object-cover transition-all duration-[1200ms] ease-out grayscale-[40%] group-hover:grayscale-0 group-hover:scale-[1.04]"
+                      />
+                      <div className="absolute inset-0 bg-ink/20 group-hover:bg-ink/0 transition-colors duration-700" />
+                      <div className="absolute top-4 left-4 eyebrow text-cream/90">{c.index}</div>
+                    </div>
+                    <div className="pt-5 flex items-start justify-between gap-6">
+                      <h3 className="font-display text-2xl md:text-3xl leading-tight -tracking-[0.01em]">
+                        {c.title}
+                      </h3>
+                      <span className="eyebrow shrink-0 mt-2">↗</span>
+                    </div>
+                    <p className="mt-3 text-sm text-ink/65 leading-relaxed max-w-[36ch]">{c.caption}</p>
+                  </li>
+                ))}
+                <li className="w-6 shrink-0" aria-hidden />
+              </ul>
+            </div>
           </div>
         </section>
 
