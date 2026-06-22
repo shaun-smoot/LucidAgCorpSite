@@ -51,6 +51,37 @@ Pass with `-e`, e.g. `-e PORT=8080 -p 8080:8080`.
 > succeed and are logged to the container output but are **not** sent to Slack.
 > Treat the webhook URL as a secret — never commit it to the repo.
 
+### Creating the Slack webhook
+
+1. In Slack, create the channel (e.g. `request-a-consultation`).
+2. Go to **https://api.slack.com/apps** → **Create New App** → **From scratch**;
+   name it (e.g. `Lucid AG Website`) and pick your workspace.
+3. Open **Features → Incoming Webhooks** and toggle it **On**.
+4. Click **Add New Webhook to Workspace**, choose the channel, and **Allow**.
+5. Copy the generated URL — it looks like
+   `https://hooks.slack.com/services/T000/B000/XXXX`. Keep it secret.
+
+Optional test before deploying:
+
+```bash
+curl -X POST -H 'Content-type: application/json' \
+  --data '{"text":"Test from Lucid AG website setup"}' \
+  "$SLACK_WEBHOOK_URL"
+```
+
+### Verifying delivery after deploy
+
+Submit the form on the live site (or POST a test payload), then watch the
+container logs and your Slack channel:
+
+```bash
+docker logs -f lucid-ag
+```
+
+A successful submission posts a "New consultation request" message to the
+channel. If you see `Slack webhook returned 4xx/5xx` in the logs, re-check the
+`SLACK_WEBHOOK_URL` value.
+
 ## 3. docker-compose (optional)
 
 ```yaml
